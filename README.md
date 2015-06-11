@@ -1,5 +1,3 @@
-<snippet>
-  <content><![CDATA[
 # $Leaflet Test Map
 
 A simple map written in Javascript using the Leaflet library. The Marker Cluster plugin for LEaflet is also utilized to cluster 
@@ -33,6 +31,3 @@ Chris Rice - @crice937
 
 https://creativecommons.org/licenses/by-sa/2.0/
 
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
