@@ -26,7 +26,7 @@ When clicking a point, popups contain information regarding the brewery. Zoom or
 
 ## Credits
 
-Chris Rice - <a href = "http://twitter.com/crice937" @crice937</a>
+Chris Rice  - [@crice937](http://twitter.com/crice937)
 
 ## License
 
