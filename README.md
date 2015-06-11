@@ -1,4 +1,4 @@
-# $Leaflet Test Map
+# Leaflet Test Map
 
 A simple map written in Javascript using the Leaflet library. The Marker Cluster plugin for LEaflet is also utilized to cluster 
 brewer data for all 47 Georgia breweries. 
