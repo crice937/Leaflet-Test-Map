@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Leaflet GeoJSON Test</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="../geoJSON/ga_brewery_master_list.geojson" type="text/javascript"></script>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+
+	<link rel="stylesheet" href="../dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="../dist/MarkerCluster.Default.css" />
+	<script src="../dist/leaflet.markercluster-src.js"></script>
+</head>
+<body>
+
+	<div id="map" style="width: 600px; height: 400px"></div>
+
+	<script>
+
+		var map = L.map('map').setView([33.76088, -84.38599], 5);
+
+		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'examples.map-i875mjb7'
+		}).addTo(map);
+
+		var geojsonMarkerOptions = {
+			radius: 4,
+			fillColor: "#ff7800",
+			color: "#000",
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+		};
+
+		var markers = L.markerClusterGroup();
+
+		var geoJsonLayer = L.geoJson(brew, { 
+			onEachFeature: function (feature, layer) {
+        		layer.bindPopup("<b>Name:</b>" + " " + feature.properties.Name + '<br />'
+														+ "<b>Type:</b>" + " " + feature.properties.Type
+        												+ '<br />'
+        												+ "<b>Barrels Produced/yr:</b>" + " " + feature.properties.Barrels_Ye
+        												+ '<br />'
+                                                        + "<b>Address:</b>" + " " + feature.properties.Address
+        												+ '<br />'
+        												+ "<b>Zip Code:</b>" + " " + feature.properties.Zip_Code
+        												+ '<br />'
+        												+ "<b>City:</b>" + " " + feature.properties.City
+        												+ '<br />'
+        												+ "<b>State:</b>" + " " + feature.properties.State
+        												+ '<br />'
+        												);
+    		},
+			pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, geojsonMarkerOptions);
+			}
+		});
+
+		markers.addLayer(geoJsonLayer);
+		map.addLayer(markers);
+		map.fitBounds(markers.getBounds());
+
+	</script>
+</body>
+</html>
